@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -64,7 +65,7 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
     if (pickedFile != null) {
       setState(() {
         imagePath = pickedFile.path;
-        recognizedText = ''; // Clear recognized text when new image is selected
+        recognizedText = '';
       });
       recognizeText();
     }
@@ -84,11 +85,10 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool showOptions = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Recognition App'),
-      ),
+          // title: Text('Image Recognition App'),
+          ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -97,13 +97,15 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
               imagePath != null
                   ? Image.file(
                       File(imagePath!),
-                      height: 200,
+                      height: 200.h,
                     )
-                  : Text('No image selected'),
-              SizedBox(height: 20),
-              Text('Recognized Text:',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+                  : const Text('No image selected'),
+              SizedBox(height: 20.h),
+              Text(
+                'Recognized Text:',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
+              ),
+              SizedBox(height: 10.h),
               SingleChildScrollView(
                 child: Text(recognizedText),
               ),
@@ -117,7 +119,7 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
                   IconButton(
                     icon: const Icon(Icons.insert_drive_file),
                     color: Colors.white,
-                    iconSize: 24,
+                    iconSize: 24.r,
                     onPressed: () {
                       getImage(false);
                     },
@@ -125,7 +127,7 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
                   IconButton(
                     icon: const Icon(Icons.camera_alt),
                     color: Colors.white,
-                    iconSize: 24,
+                    iconSize: 24.r,
                     onPressed: () {
                       getImage(true);
                     },
@@ -164,15 +166,15 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
                                 color: Colors.blue,
                               ),
                             ),
-                            const SizedBox(
-                              width: 4,
+                            SizedBox(
+                              width: 4.w,
                             ),
                             const Text("Pause Audio"),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 4,
+                      SizedBox(
+                        height: 4.h,
                       ),
                       GestureDetector(
                         onTap: () => stopCaption(),
@@ -185,8 +187,8 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
                                 color: Colors.red,
                               ),
                             ),
-                            const SizedBox(
-                              width: 4,
+                            SizedBox(
+                              width: 4.w,
                             ),
                             const Text("Stop Audio"),
                           ],
@@ -201,7 +203,7 @@ class ImageUploadingScreenState extends State<ImageUploadingScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        height: 50,
+        height: 50.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
