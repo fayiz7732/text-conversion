@@ -20,6 +20,7 @@ class _CommonTextFiledState extends State<CommonTextFiled> {
     return TextField(
       controller: widget.controller,
       decoration: InputDecoration(
+        hintStyle: TextStyle(color: const Color(0xFF878791)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(14),

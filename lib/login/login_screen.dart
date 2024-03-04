@@ -74,6 +74,11 @@ class _RegistrationSCreenState extends State<LoginScreen> {
         password: _passwordController.text.trim(),
       );
       print('User logged in: ${userCredential.user!.email}');
+       Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const ImageUploadingScreen(),
+    ),
+  );
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ImageUploadingScreen()),
