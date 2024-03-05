@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:text/login/login_screen.dart';
+import 'package:text/firebase_options.dart';
 import 'package:text/register/registartion_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,7 +8,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
     runApp(const MyApp());
   } catch (e) {
     print('Error initializing Firebase: $e');
