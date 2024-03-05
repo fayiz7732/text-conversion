@@ -6,9 +6,11 @@ class CommonTextFiled extends StatefulWidget {
     super.key,
     this.hintText,
     this.controller,
+    this.validator,
   });
   final String? hintText;
   final TextEditingController? controller;
+   final String? Function(String?)? validator;
 
   @override
   State<CommonTextFiled> createState() => _CommonTextFiledState();
@@ -17,7 +19,8 @@ class CommonTextFiled extends StatefulWidget {
 class _CommonTextFiledState extends State<CommonTextFiled> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator:widget.validator ,
       controller: widget.controller,
       decoration: InputDecoration(
         hintStyle: TextStyle(color: const Color(0xFF878791)),
