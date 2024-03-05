@@ -58,15 +58,17 @@ class _RegistrationSCreenState extends State<LoginScreen> {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
 
-  final TextEditingController _nameController = TextEditingController();
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
 
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+    super.dispose();
+  }
+
   Future<void> _login() async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -74,11 +76,11 @@ class _RegistrationSCreenState extends State<LoginScreen> {
         password: _passwordController.text.trim(),
       );
       print('User logged in: ${userCredential.user!.email}');
-       Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const ImageUploadingScreen(),
-    ),
-  );
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const ImageUploadingScreen(),
+        ),
+      );
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ImageUploadingScreen()),
