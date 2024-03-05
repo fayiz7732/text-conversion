@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -184,17 +185,38 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: const TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Already have an account? ',
-                      ),
-                      TextSpan(
-                        text: 'Login Now',
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Already have an account? ',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xFF6F6F6F),
+                            ),
+                          ),
+                        ),
+                        TextSpan(
+                            text: 'Login Now',
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 90, 213, 2),
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
