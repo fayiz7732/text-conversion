@@ -139,18 +139,44 @@ class _RegistrationSCreenState extends State<LoginScreen> {
         password: _passwordController.text.trim(),
       );
       print('User logged in: ${userCredential.user!.email}');
+      // Navigate to the next screen upon successful login
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => const ImageUploadingScreen(),
         ),
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ImageUploadingScreen()),
-      );
     } catch (e) {
-      print('Error during login: $e');
-      // Handle login errors (e.g., display error message)
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('User Does Not Exist'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+          print('Error: User does not exist.');
+        } else if (e.code == 'invalid-credential' ||
+            e.code == 'expired-credential') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('User Does Not Exist'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+          print(
+              'Error: The authentication credential is malformed or has expired.');
+          // Display error message to the user
+          // For example, show a snackbar or dialog
+        } else {
+          // Handle other authentication errors
+          print('Error during login: ${e.message}');
+          // Display general error message to the user
+        }
+      } else {
+        // Handle other exceptions
+        print('Error during login: $e');
+        // Display general error message to the user
+      }
     }
   }
 }
