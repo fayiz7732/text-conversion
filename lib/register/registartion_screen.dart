@@ -80,7 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 60.h),
+                SizedBox(height: 15.h),
                 const Title(
                   title: 'Name',
                 ),
