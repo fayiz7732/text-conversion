@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:text/login/login_screen.dart';
+import 'package:text/firebase_options.dart';
 import 'package:text/register/registartion_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  try {
-    await Firebase.initializeApp();
-    runApp(const MyApp());
-  } catch (e) {
-    print('Error initializing Firebase: $e');
-  }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,10 +23,10 @@ class MyApp extends StatelessWidget {
       builder: (ctx, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          
             useMaterial3: false,
           ),
-          home: RegistrationScreen()),
+          home: const RegistrationScreen()),
     );
   }
 }
